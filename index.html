@@ -18,6 +18,7 @@
    // Constructor function for Game objects
    function Game() {
         this.frames = []
+        this.total = 0
     }
     
     Game.prototype.play = function(score) {
@@ -30,15 +31,15 @@
 
     Game.prototype.gameOver = function() {
       if(this.frames.length >= 10) {
-        alert("game over!")
+        alert(`game over! you scored ${this.total}`)
         this.reset()
       }
     }
 
     Game.prototype.sum = function() {
       const reducer = (accumulator, currentValue) => accumulator + currentValue;
-      var sum = this.frames.reduce(reducer)
-      document.getElementById("total").innerHTML = sum
+      this.total = this.frames.reduce(reducer)
+      document.getElementById("total").innerHTML = this.total
     }
     
     Game.prototype.showScore = function() {
@@ -51,8 +52,8 @@
 
     Game.prototype.reset = function() {
       this.frames = []
-      sum = 0
-      document.getElementById("total").innerHTML = sum
+      this.total = 0
+      document.getElementById("total").innerHTML = this.total
       document.getElementById("demo").innerHTML = this.frames
     }
     
