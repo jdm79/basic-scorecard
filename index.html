@@ -8,10 +8,10 @@
 </head>
 <body>
     <h2>JavaScript Object Constructors</h2>
-    <button onClick="game.play(Math.floor(Math.random() * 100))">Play!</button>
+    <button onClick="game.main()">Play!</button>
     <button onClick="game.reset()">Reset</button>
-    <p id="demo">hello world</p>
-    <p id="total">hello world</p>
+    <p id="demo">0</p>
+    <p id="total">0</p>
 
   
   <script>
@@ -20,13 +20,18 @@
         this.frames = []
         this.total = 0
     }
-    
-    Game.prototype.play = function(score) {
-      this.score = score
-      this.frames.push(this.score)
-      this.showScore()
+
+    Game.prototype.main = function() {
+      this.play()
       this.sum()
+      this.showScore()
       this.gameOver()
+    }
+    
+    Game.prototype.play = function() {
+      this.score = Math.floor(Math.random() * 100)
+      console.log(this.score);
+      this.frames.push(this.score)
     }
 
     Game.prototype.gameOver = function() {
@@ -34,6 +39,10 @@
         alert(`game over! you scored ${this.total}`)
         this.reset()
       }
+    }
+
+    Game.prototype.refreshScores = function() {
+
     }
 
     Game.prototype.sum = function() {
@@ -44,10 +53,6 @@
     
     Game.prototype.showScore = function() {
       document.getElementById("demo").innerHTML = this.frames
-      // console.log(this.frames.length);
-      // if(this.frames.length >= 10) {
-
-      // } 
     }
 
     Game.prototype.reset = function() {
