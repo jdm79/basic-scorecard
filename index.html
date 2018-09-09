@@ -25,6 +25,14 @@
       this.frames.push(this.score)
       this.showScore()
       this.sum()
+      this.gameOver()
+    }
+
+    Game.prototype.gameOver = function() {
+      if(this.frames.length >= 10) {
+        alert("game over!")
+        this.reset()
+      }
     }
 
     Game.prototype.sum = function() {
